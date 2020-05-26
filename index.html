@@ -7,6 +7,7 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
   <link href="./css/screen1.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <meta content="AnimaApp.com - Design to code, Automated." name="author">
   </meta>
 </head>
@@ -233,19 +234,31 @@
 
     function performSearch() {
       if (searchBox.value === '') {
-        alert(`Please enter search keyword !`)
+        Swal.fire({
+          title: '<strong>Please enter keyword !</strong>',
+          icon: 'warning',
+          showConfirmButton: true
+        })
         return
       } else {
-        alert(`You search : ${searchBox.value}`)
+        Swal.fire({
+          title: `Your search keyword: ${searchBox.value}`,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
         searchBox.value = ''
       }
     }
 
     searchBox.addEventListener('keyup', e => {
-      if (e.keyCode === 13) performSearch() 
+      if (e.keyCode === 13) performSearch()
     })
 
-    searchIcon.addEventListener('click', () => performSearch() )
+    searchIcon.addEventListener('click', () => performSearch())
 
   </script>
 

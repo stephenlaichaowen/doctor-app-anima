@@ -1,6 +1,7 @@
 .anima-flexbox-container .grid,
 .doctor-link,
-.book-now-btn {
+.book-now-btn,
+.send-message-btn {
   cursor: pointer;
 }
 
@@ -23,7 +24,15 @@
   margin-left: 1rem;
 }
 
-.book-now-btn {
-
+.date-1-6ec68e5d-6291-4c53-8eef-0b80f314d96f-qPleCk:hover,
+.date-2-e81a04ec-ed39-418a-ae52-2769781eeb2c-WExJDN:hover,
+.date-3-e0bdebe6-018f-4075-9bda-02f630526e46-t7NvgL:hover,
+.date-4-8cbc9133-7c17-4548-99e4-ed20420cddec-77c1eU:hover {
+  /* border: 1px solid green;
+  border-radius: 8px;
+  opacity: 0.9;
+  background: rgba(0, 255, 0, 0.9); */
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
 }
 

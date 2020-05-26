@@ -8,6 +8,7 @@
   <link href="./css/screen2.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="./css/custom.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <meta content="AnimaApp.com - Design to code, Automated." name="author">
   </meta>
 </head>
@@ -46,8 +47,8 @@
         <div class="date-2-e81a04ec-ed39-418a-ae52-2769781eeb2c-WExJDN">
           <div class="rectangle-copy-12-3234d9a6-0367-4344-a3f3-4d4bbe6f475c-je4Yx6">
           </div>
-          <div class="rectangle-copy-3-185f364c-7350-41bb-bc82-2f1c004af254-1HsIou">
-          </div>
+          <!-- <div class="rectangle-copy-3-185f364c-7350-41bb-bc82-2f1c004af254-1HsIou">
+          </div> -->
           <div class="a9-mar-12a09dfc-98f1-44c4-a9f9-eda0da402255-QrQTyJ font-class-2">
             <span class="span0-QrQTyJ">9<br /></span><span class="span1-QrQTyJ">MAR</span>
           </div>
@@ -135,7 +136,7 @@
           Book Now
         </div>
       </div>
-      <div class="send-message-4e47318d-edeb-4477-88a3-faf3dd271d6c-VoEy6X">
+      <div class="send-message-btn send-message-4e47318d-edeb-4477-88a3-faf3dd271d6c-VoEy6X">
         <div class="send-message-9f448952-935a-46ea-8c1e-a85884fdce32-wiq6oJ font-class-2">
           Send Message
         </div>
@@ -146,12 +147,56 @@
   </div>
   <script>
     const bookBtn = document.querySelector('.book-now-btn');
+    const sendMessageBtn = document.querySelector('.send-message-btn');
 
     bookBtn.addEventListener('click', () => {
-      alert(`Dr. Ernest Lopez is booked !!!`);
+      Swal.fire({
+        title: 'Dr. Ernest Lopez is booked !!!',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+    })
+
+    sendMessageBtn.addEventListener('click', () => {
+      Swal.fire({
+        title: 'Your message to Dr. Ernest Lopez',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Send',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+          return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
+            })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Request failed: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire({
+            title: `${result.value.login}'s avatar`,
+            imageUrl: result.value.avatar_url
+          })
+        }
+      })
     })
   </script>
-  <!-- Scripts -->
+
   <script>
     anima_isHidden = function (e) {
       if (!(e instanceof HTMLElement)) return !1;

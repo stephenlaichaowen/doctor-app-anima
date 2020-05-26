@@ -234,7 +234,10 @@
     searchBox.addEventListener('keyup', e => {
       
       if (e.keyCode === 13) {
-        if (searchBox.value === '') alert(`Please enter search keyword !`);
+        if (searchBox.value === '') { 
+          alert(`Please enter search keyword !`) 
+          return
+        }
         alert(`You search : ${searchBox.value}`)
         searchBox.value = ''
       }
